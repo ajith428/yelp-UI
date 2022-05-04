@@ -4,40 +4,36 @@ import { YelpService } from 'src/app/services/yelp.service';
 @Component({
   selector: 'app-yelp-reviews',
   templateUrl: './yelp-reviews.component.html',
-  styleUrls: ['./yelp-reviews.component.css']
+  styleUrls: ['./yelp-reviews.component.css'],
 })
 export class YelpReviewsComponent implements OnInit {
-
-  constructor(private yelpService: YelpService) { }
+  constructor(private yelpService: YelpService) {}
 
   rating: number = 0;
-  defaultProfileImage = "../../../assets/profile.png"
+  defaultProfileImage = '../../../assets/profile.png';
   starCount: number = 5;
-  color: string = "warn";
+  color: string = 'warn';
 
-  reviewResponse :any = {
+  reviewResponse: any = {
     reviews: [],
   };
-  business: string = "";
-  businessLoc: string = "";
-  error: string = ""
+  business: string = '';
+  businessLoc: string = '';
+  error: string = '';
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   getReviews(e: any) {
     e.preventDefault();
     if (!!this.businessLoc) {
-      this.error = "";
-      this.yelpService.getReviews(this.business, this.businessLoc, this)
-    }
-    else {
-      this.error = "Location field is mandatory";
+      this.error = '';
+      this.yelpService.getReviews(this.business, this.businessLoc, this);
+    } else {
+      this.error = 'location is required';
     }
   }
 
   setBusinessReviews(res: any) {
     this.reviewResponse = res;
   }
-
 }
